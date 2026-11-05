@@ -1,0 +1,16 @@
+div{
+  background-color: white;
+}
+h1{color: rgb(34, 181, 255);}
+strong{color: rgb(34, 181, 255);}
+p{
+  color: rgb(1, 1, 1);
+}
+button{
+  background-color: rgb(34, 181, 255);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+} 
