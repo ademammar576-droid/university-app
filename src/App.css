@@ -14,3 +14,34 @@ button{
   border-radius: 5px;
   cursor: pointer;
 } 
+
+.App {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.App h2 {
+  text-align: center;
+  color: #333;
+}
+
+.students-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.student-card {
+  width: 250px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.student-card img {
+  border-radius: 50%;
+  object-fit: cover;
+}

@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import "./App.css";
 import Header from "./components/Header.jsx";
@@ -5,9 +6,9 @@ import Navbar from "./components/Navbar.jsx";
 import StudentCard from "./components/StudentCard.jsx";
 import Footer from "./components/Footer.jsx";
 import studentImage from "./assets/adem.png";
+import StudentForm from "./StudentForm";
 
 function App() {
-  // 1. Gérer la liste des étudiants avec useState[cite: 48]
   const [etudiants, setEtudiants] = useState([
     {
       prenom: "Slim",
@@ -35,19 +36,14 @@ function App() {
 
   const [recherche, setRecherche] = useState("");
 
-  function ajouterEtudiant() {
-    const nouvelEtudiant = {
-      prenom: "Yassine",
-      nom: "Ben Salem",
-      email: "yassine.bensalem@gmail.com",
-      telephone: "+216 44 444 444",
-      filiere: "Génie Logiciel et Systèmes d'Information",
-      anneeEtude: "2ème année",
-      groupe: "GLSI 1",
-      ville: "Sfax",
-      image: studentImage,
+  // Ajouter un étudiant avec les données du formulaire
+  function ajouterEtudiant(nouvelEtudiant) {
+    const etudiantAvecId = {
+      ...nouvelEtudiant,
+      id: Date.now(),
     };
-    setEtudiants([...etudiants, nouvelEtudiant]);
+
+    setEtudiants([...etudiants, etudiantAvecId]);
   }
 
   function supprimerEtudiant(email) {
@@ -75,14 +71,15 @@ function App() {
 
   return (
     <div className="app-container">
+
       <Header />
       <Navbar />
-      
+
+      {/* Formulaire d'ajout d'un étudiant */}
+      <StudentForm onAjouterEtudiant={ajouterEtudiant} />
+
       <div className="actions" style={{ padding: "20px", textAlign: "center" }}>
-        <button onClick={ajouterEtudiant} style={{ padding: "10px 20px", fontSize: "16px" }}>
-          + Ajouter un étudiant
-        </button>
-        <br /><br />
+
         <input
           type="text"
           placeholder="Rechercher par nom, prénom ou filière..."
@@ -90,13 +87,14 @@ function App() {
           onChange={(e) => setRecherche(e.target.value)}
           style={{ padding: "8px", width: "300px", borderRadius: "5px" }}
         />
+
       </div>
 
       <div className="container">
-        {/* Affichage du tableau filtré avec map()[cite: 61] */}
+
         {etudiantsFiltres.map((etudiant) => (
           <StudentCard
-            key={etudiant.email}
+            key={etudiant.id || etudiant.email}
             prenom={etudiant.prenom}
             nom={etudiant.nom}
             email={etudiant.email}
@@ -110,9 +108,11 @@ function App() {
             onModifier={modifierEtudiant}
           />
         ))}
+
       </div>
 
       <Footer />
+
     </div>
   );
 }
